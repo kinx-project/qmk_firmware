@@ -1,14 +1,14 @@
 #include "kint41.h"
 
-
 volatile measurement_t measurement;
-#if 0
+
 // called once when the firmware starts up
 void matrix_init_kb(void) {
-    matrix_init_user();
+    // matrix_init_user();
     led_init_ports();
 }
 
+#if 0
 volatile uint32_t last_scan;
 volatile uint32_t freq;
 
@@ -26,6 +26,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     measurement.start = DWT->CYCCNT;
     return process_record_user(keycode, record);
 }
+#endif
 
 #define ledTurnOff palSetLine
 #define ledTurnOn palClearLine
@@ -53,9 +54,9 @@ void led_init_ports() {
 }
 
 void led_set_kb(uint8_t usb_led) {
-    measurement.report = DWT->CYCCNT;
+    // measurement.report = DWT->CYCCNT;
 
-    #if 0
+#if 0
     const uint32_t freq_us = (freq * 5.55) / 1000;
     {
         const uint32_t diff_ns      = (measurement.report - measurement.start) * 5.55;
@@ -64,7 +65,7 @@ void led_set_kb(uint8_t usb_led) {
         const uint32_t diff_prev_us = diff_prev_ns / 1000;
         dprintf("press-to-report=%d us, press-to-usbsof=%d us, matrix-scan-freq=%d us\r\n", diff_us, diff_prev_us, freq_us);
     }
-    #endif
+#endif
 
     if (usb_led & (1 << USB_LED_COMPOSE)) {
         ledTurnOn(LED_KEYPAD);
@@ -90,4 +91,3 @@ void led_set_kb(uint8_t usb_led) {
         ledTurnOff(LED_CAPS_LOCK);
     }
 }
-#endif
