@@ -31,7 +31,8 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 #define ledTurnOff palSetLine
 #define ledTurnOn palClearLine
 
-#define LED_KEYPAD LINE_PIN24
+// TODO: change back to LINE_PIN24
+#define LED_KEYPAD LINE_PIN25
 #define LED_SCROLL_LOCK LINE_PIN25
 #define LED_NUM_LOCK LINE_PIN26
 #define LED_CAPS_LOCK LINE_PIN12
