@@ -1,11 +1,11 @@
 [submodule "lib/chibios"]
 	path = lib/chibios
-	url = https://github.com/qmk/ChibiOS
+	url = https://github.com/stapelberg/ChibiOS
 	branch = master
 [submodule "lib/chibios-contrib"]
 	path = lib/chibios-contrib
-	url = https://github.com/qmk/ChibiOS-Contrib
-	branch = master
+	url = https://github.com/stapelberg/ChibiOS-Contrib
+	branch = teensy41
 [submodule "lib/ugfx"]
 	path = lib/ugfx
 	url = https://github.com/qmk/uGFX
