@@ -6,4 +6,7 @@ BOARD = PJRC_TEENSY_4_1
 MCU  = cortex-m4
 ARMV = 7
 
-CONSOLE_ENABLE = yes        # Console for debug
+# TODO: this seems to have no effect here. putting it in stapelberg/rules.mk works instead.
+# # Console for debug
+# CONSOLE_ENABLE = yes
+
