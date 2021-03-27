@@ -63,6 +63,9 @@ void keyboard_post_init_user(void) {
 
 void matrix_scan_user(void) {}
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) { return true; }
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    printf_debug("process_record_user(keycode=%d)\n", keycode);
+    return true;
+}
 
 void led_set_user(uint8_t usb_led) {}

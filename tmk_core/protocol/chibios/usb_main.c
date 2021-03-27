@@ -48,6 +48,8 @@
 extern keymap_config_t keymap_config;
 #endif
 
+#include "printf_debug.h"
+
 /* ---------------------------------------------------------
  *       Global interface variables and declarations
  * ---------------------------------------------------------
@@ -296,6 +298,7 @@ static usb_driver_configs_t drivers = {
 /* Handles the USB driver global events
  * TODO: maybe disable some things when connection is lost? */
 static void usb_event_cb(USBDriver *usbp, usbevent_t event) {
+  printf_debug("chibios/usb_main.c: usb_event_cb(event=%d)", event);
     switch (event) {
         case USB_EVENT_ADDRESS:
             return;
