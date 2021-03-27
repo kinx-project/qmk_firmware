@@ -121,6 +121,7 @@ endif
 include $(PORT_V)
 # Other files (optional).
 include $(CHIBIOS)/os/hal/lib/streams/streams.mk
+include $(CHIBIOS_CONTRIB)/os/common/ports/ARMCMx/compilers/GCC/utils/fault_handlers_v7m.mk
 
 RULESPATH = $(CHIBIOS)/os/common/ports/ARMCMx/compilers/GCC
 ifeq ("$(wildcard $(RULESPATH)/rules.mk)","")
@@ -155,17 +156,18 @@ CHIBISRC = $(STARTUPSRC) \
        $(PLATFORMSRC) \
        $(BOARDSRC) \
        $(STREAMSSRC) \
+       $(FAULTHANDLERSSRC) \
        $(CHIBIOS)/os/various/syscalls.c
 
 # Ensure the ASM files are not subjected to LTO -- it'll strip out interrupt handlers otherwise.
-QUANTUM_LIB_SRC += $(STARTUPASM) $(PORTASM) $(OSALASM)
+QUANTUM_LIB_SRC += $(STARTUPASM) $(PORTASM) $(OSALASM) $(FAULTHANDLERSXASMSRC)
 
 CHIBISRC := $(patsubst $(TOP_DIR)/%,%,$(CHIBISRC))
 
 EXTRAINCDIRS += $(CHIBIOS)/os/license $(CHIBIOS)/os/oslib/include \
          $(STARTUPINC) $(KERNINC) $(PORTINC) $(OSALINC) \
          $(HALINC) $(PLATFORMINC) $(BOARDINC) $(TESTINC) \
-         $(STREAMSINC) $(CHIBIOS)/os/various $(COMMON_VPATH)
+         $(FAULTHANDLERSINC) $(STREAMSINC) $(CHIBIOS)/os/various $(COMMON_VPATH)
 
 #
 # ChibiOS-Contrib
