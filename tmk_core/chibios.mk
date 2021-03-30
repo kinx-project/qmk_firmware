@@ -385,8 +385,14 @@ ifndef TEENSY_LOADER_CLI
     endif
 endif
 
+ifeq ($(strip $(MCU_FAMILY)),MIMXRT1062)
+    TEENSY_LOADER_CLI_MCU = imxrt1062
+else
+    TEENSY_LOADER_CLI_MCU = $(MCU_LDSCRIPT)
+endif
+
 define EXEC_TEENSY
-	$(TEENSY_LOADER_CLI) -mmcu=$(MCU_LDSCRIPT) -w -v $(BUILD_DIR)/$(TARGET).hex
+	$(TEENSY_LOADER_CLI) -mmcu=$(TEENSY_LOADER_CLI_MCU) -w -v $(BUILD_DIR)/$(TARGET).hex
 endef
 
 teensy: $(BUILD_DIR)/$(TARGET).hex cpfirmware sizeafter
@@ -402,6 +408,8 @@ ifneq ($(strip $(PROGRAM_CMD)),)
 else ifeq ($(strip $(BOOTLOADER)),kiibohd)
 	$(call EXEC_DFU_UTIL)
 else ifeq ($(strip $(MCU_FAMILY)),KINETIS)
+	$(call EXEC_TEENSY)
+else ifeq ($(strip $(MCU_FAMILY)),MIMXRT1062)
 	$(call EXEC_TEENSY)
 else ifeq ($(strip $(MCU_FAMILY)),STM32)
 	$(call EXEC_DFU_UTIL)
