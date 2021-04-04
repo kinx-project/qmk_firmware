@@ -76,3 +76,29 @@ bool led_update_kb(led_t led_state) {
     }
     return res;
 }
+
+// delay_inline sleeps for |cycles| (e.g. sleeping for F_CPU will sleep 1s).
+// delay_inline assumes the cycle counter has already been initialized and
+// should not be modified, i.e. it is safe to call during keyboard matrix scan.
+//
+// ChibiOS enables the cycle counter in chcore_v7m.c:
+// https://github.com/ChibiOS/ChibiOS/blob/b63023915c304092acb9f33bbab40f3ec07a7f0e/os/common/ports/ARMCMx/chcore_v7m.c#L263
+static void delay_inline(const uint32_t cycles) {
+  const uint32_t start = DWT->CYCCNT;
+  while ((DWT->CYCCNT - start) < cycles) {
+    // busy-loop until time has passed
+  }
+}
+
+void matrix_output_unselect_delay(void) {
+  // Use the cycle counter to do precise timing in microseconds. The ChibiOS
+  // thread sleep functions only allow sleep durations starting at 1 tick, which
+  // is 100μs in our configuration.
+
+  // Empirically: e.g. 1μs is not enough, will result in keys that don’t work
+  // and ghost key presses.
+
+  // 1666 cycles at 0.6 cycles/ns == 1μs
+  const uint32_t cycles_per_us = 1666;
+  delay_inline(10 * cycles_per_us);
+}

@@ -25,6 +25,9 @@
 
 #define CH_CFG_TIME_QUANTUM 20
 
+// One tick (minimum sleep interval) will be 100 μs. This value cannot be
+// increased arbitrarily: chSysTimerHandlerI() must be executed in less than one
+// tick as per http://forum.chibios.org/viewtopic.php?t=3712#p27851
 #define CH_CFG_ST_FREQUENCY 10000
 
 #include_next <chconf.h>
