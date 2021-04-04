@@ -99,6 +99,10 @@
 // from its 10ms default to the 1ms minimum that USB 1.x (Full Speed) allows:
 #define USB_POLLING_INTERVAL_MS 1
 
-/* We use high-speed GPIOs which are connected to the AHB bus, which runs at the
- * ARM Core Clock frequency of 600 MHz. No delay is necessary. */
-#define GPIO_INPUT_PIN_DELAY 1
+/* We use the i.MX RT1060 high-speed GPIOs (GPIO6-9) which are connected to the
+ * AHB bus (AHB_CLK_ROOT), which runs at the same speed as the ARM Core Clock,
+ * i.e. 600 MHz. See MIMXRT1062, page 949, 12.1 Chip-specific GPIO information.
+ * No additional delay is necessary. */
+
+// in clock cycles
+#define GPIO_INPUT_PIN_DELAY 0
