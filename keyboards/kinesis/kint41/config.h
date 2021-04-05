@@ -27,6 +27,8 @@
 #define MANUFACTURER "https://github.com/stapelberg"
 #undef PRODUCT
 #define PRODUCT "kinT (kint41)"
+#undef USB_VERSION
+#define USB_VERSION VERSION_BCD(2, 0, 0)
 
 /* key matrix size */
 #define MATRIX_ROWS 15

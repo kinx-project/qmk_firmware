@@ -351,7 +351,11 @@ const USB_Descriptor_Device_t PROGMEM DeviceDescriptor = {
         .Size                   = sizeof(USB_Descriptor_Device_t),
         .Type                   = DTYPE_Device
     },
+#if defined(USB_VERSION)
+    .USBSpecification           = USB_VERSION,
+#else
     .USBSpecification           = VERSION_BCD(1, 1, 0),
+#endif
 
 #if VIRTSER_ENABLE
     .Class                      = USB_CSCP_IADDeviceClass,
