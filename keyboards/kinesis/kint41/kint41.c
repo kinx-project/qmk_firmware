@@ -95,10 +95,10 @@ void matrix_output_unselect_delay(void) {
   // thread sleep functions only allow sleep durations starting at 1 tick, which
   // is 100μs in our configuration.
 
-  // Empirically: e.g. 1μs is not enough, will result in keys that don’t work
-  // and ghost key presses.
+  // Empirically: e.g. 5μs is not enough, will result in keys that don’t work
+  // and ghost key presses. 10μs seems to work well.
 
-  // 1666 cycles at 0.6 cycles/ns == 1μs
-  const uint32_t cycles_per_us = 1666;
+  // 600 cycles at 0.6 cycles/ns == 1μs
+  const uint32_t cycles_per_us = 600;
   delay_inline(10 * cycles_per_us);
 }
