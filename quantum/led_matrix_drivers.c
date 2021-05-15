@@ -15,10 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "quantum.h"
-#include "ledmatrix.h"
+#include "led_matrix.h"
 
 /* Each driver needs to define a struct:
  *
@@ -29,10 +26,6 @@
  */
 
 #if defined(IS31FL3731) || defined(IS31FL3733)
-
-#    if defined(IS31FL3731)
-#        include "is31fl3731-simple.h"
-#    endif
 
 #    include "i2c_master.h"
 
@@ -66,7 +59,7 @@ static void init(void) {
 #        endif
 #    endif
 
-    for (int index = 0; index < LED_DRIVER_LED_COUNT; index++) {
+    for (int index = 0; index < DRIVER_LED_TOTAL; index++) {
 #    ifdef IS31FL3731
         IS31FL3731_set_led_control_register(index, true);
 #    else
