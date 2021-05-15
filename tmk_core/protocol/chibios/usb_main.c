@@ -739,10 +739,7 @@ void kbd_in_cb(USBDriver *usbp, usbep_t ep) {
 /* start-of-frame handler
  * TODO: i guess it would be better to re-implement using timers,
  *  so that this is not going to have to be checked every 1ms */
-void kbd_sof_cb(USBDriver *usbp) {
-    (void)usbp;
-    measurement.sof = DWT->CYCCNT;
-}
+void kbd_sof_cb(USBDriver *usbp) { (void)usbp; }
 
 /* Idle requests timer code
  * callback (called from ISR, unlocked state) */
