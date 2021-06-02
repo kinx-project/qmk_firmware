@@ -177,7 +177,7 @@
                             "oneOf": [
                                 {
                                     "type": "string",
-                                    "pattern": "^[A-K]\\d{1,2}$"
+                                    "pattern": "^([A-K]\\d{1,2}|LINE_PIN\\d{1,2})$"
                                 },
                                 {
                                     "type": "number",
@@ -196,7 +196,7 @@
                         "oneOf": [
                             {
                                 "type": "string",
-                                "pattern": "^[A-K]\\d{1,2}$"
+                                "pattern": "^([A-K]\\d{1,2}|LINE_PIN\\d{1,2})$"
                             },
                             {
                                 "type": "number",
@@ -214,7 +214,7 @@
                         "oneOf": [
                             {
                                 "type": "string",
-                                "pattern": "^[A-K]\\d{1,2}$"
+                                "pattern": "^([A-K]\\d{1,2}|LINE_PIN\\d{1,2})$"
                             },
                             {
                                 "type": "number",
@@ -261,7 +261,7 @@
                 },
                 "pin": {
                     "type": "string",
-                    "pattern": "^[A-K]\\d{1,2}$"
+                    "pattern": "^([A-K]\\d{1,2}|LINE_PIN\\d{1,2})$"
                 },
                 "saturation_steps": {
                     "type": "number",
